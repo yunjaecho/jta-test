@@ -1,0 +1,38 @@
+spring:
+    profiles:
+      active: prod
+
+    jta:
+      enabled: true
+      service: com.atomikos.icatch.standalone.UserTransactionServiceFactory
+      max-actives: 200
+      enable-logging: false
+
+      atomikos:
+        datasource:
+          one:
+            unique-resource-name: dataSourcePosmall
+            max-pool-size: 5
+            min-pool-size: 1
+            max-life-time: 20000
+            borrow-connection-timeout: 10000
+            xa-data-source-class-name: com.tmax.tibero.jdbc.TbDriver
+            xa-properties:
+              user: posmall
+              password: posmall
+              URL: jdbc:tibero:thin:@192.168.100.136:8629:tibero
+
+          two:
+            unique-resource-name: dataSourceWebcache
+            max-pool-size: 5
+            min-pool-size: 1
+            max-life-time: 20000
+            borrow-connection-timeout: 10000
+            xa-data-source-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+            xa-properties:
+              user: SA
+              password: p@ssw0rd
+              URL: jdbc:sqlserver://210.103.25.151:1433;databaseName=iTMSNTData
+server:
+  port: 8090
+              
