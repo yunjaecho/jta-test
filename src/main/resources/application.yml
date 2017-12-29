@@ -10,29 +10,30 @@ spring:
 
       atomikos:
         datasource:
-          one:
+          posmall:
             unique-resource-name: dataSourcePosmall
             max-pool-size: 5
             min-pool-size: 1
             max-life-time: 20000
             borrow-connection-timeout: 10000
-            xa-data-source-class-name: com.tmax.tibero.jdbc.TbDriver
+            xa-data-source-class-name: com.tmax.tibero.jdbc.ext.TbXADataSource
             xa-properties:
               user: posmall
               password: posmall
               URL: jdbc:tibero:thin:@192.168.100.136:8629:tibero
 
-          two:
+          webcache:
             unique-resource-name: dataSourceWebcache
             max-pool-size: 5
             min-pool-size: 1
             max-life-time: 20000
             borrow-connection-timeout: 10000
-            xa-data-source-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#            xa-data-source-class-name: com.microsoft.sqlserver.jdbc.SQLServerXADataSource
+            xa-data-source-class-name : com.mysql.cj.jdbc.MysqlXADataSource
             xa-properties:
-              user: SA
-              password: p@ssw0rd
-              URL: jdbc:sqlserver://210.103.25.151:1433;databaseName=iTMSNTData
+              user: root
+              password: wofl07
+              URL: jdbc:mysql://localhost:3306/world?serverTimezone=UTC&useSSL=false
+#              URL: jdbc:sqlserver://210.103.25.151:1433;databaseName=iTMSNTData
 server:
   port: 8090
-              
